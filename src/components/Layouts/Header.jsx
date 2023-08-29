@@ -237,7 +237,6 @@ const Header = () => {
                                 
                             </button>
                         </div>
-                        p
                         <div>
                             {themeConfig.theme === 'light' ? (
                                 <button
