@@ -28,7 +28,7 @@ function App({ children }) {
         // locale
         const locale = localStorage.getItem('i18nextLng') || themeConfig.locale
         dispatch(toggleLocale(locale))
-        // i18n?.changeLanguage(locale)
+        // i18n.changeLanguage(locale)
     }, [
         dispatch,
         themeConfig.theme,

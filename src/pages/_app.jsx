@@ -1,10 +1,12 @@
 import '@/styles/globals.css'
 import DefaultLayout from '@/components/Layouts/DefaultLayout'
-import { Provider } from 'react-redux';
-import Head from 'next/head';
-import store from '@/store/index';
+import { Provider } from 'react-redux'
+import Head from 'next/head'
+import store from '@/store/index'
+import { appWithI18Next } from 'ni18n'
+import { ni18nConfig } from 'ni18n.config'
 
-export default function App({ Component, pageProps }) {
+const App = ({ Component, pageProps }) => {
     const getLayout = Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>)
     return (
         <Provider store={store}>
@@ -21,3 +23,5 @@ export default function App({ Component, pageProps }) {
         </Provider>
     )
 }
+
+export default appWithI18Next(App, ni18nConfig)
