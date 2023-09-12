@@ -917,7 +917,7 @@ const Header = () => {
                                         </Link>
                                     </li>
                                     <li className="border-t border-white-light dark:border-white-light/10">
-                                        <Link href="/auth/boxed-signin" className="!py-3 text-danger">
+                                        <Link href="/api/auth/logout" className="!py-3 text-danger">
                                             <svg
                                                 className="-rotate-90 ltr:mr-2 rtl:ml-2 shrink-0"
                                                 width="18"
