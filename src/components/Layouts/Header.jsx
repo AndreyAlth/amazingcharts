@@ -1,13 +1,15 @@
-import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
 import { toggleLocale, toggleTheme, toggleSidebar, toggleRTL } from '@/store/themeConfigSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { useSession, signIn, signOut } from 'next-auth/react'
 import { useTranslation } from 'react-i18next'
 import Dropdown from '@/components/Dropdown'
+import Link from 'next/link'
 
 const Header = () => {
     const router = useRouter()
+    const { data: session } = useSession()
 
     useEffect(() => {
         const selector = document.querySelector('ul.horizontal-menu a[href="' + window.location.pathname + '"]')
@@ -827,7 +829,8 @@ const Header = () => {
                                                 <button
                                                     type="button"
                                                     className="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white">
-                                                    johndoe@gmail.com
+                                                    {/* {session?.user?.email} */}
+                                                    {/* {console.log(session)} */}
                                                 </button>
                                             </div>
                                         </div>
@@ -916,8 +919,8 @@ const Header = () => {
                                             Lock Screen
                                         </Link>
                                     </li>
-                                    <li className="border-t border-white-light dark:border-white-light/10">
-                                        <Link href="/api/auth/logout" className="!py-3 text-danger">
+                                    {session ? (<li className="border-t border-white-light dark:border-white-light/10">
+                                        <button onClick={() => signOut()} className="!py-3 text-danger">
                                             <svg
                                                 className="-rotate-90 ltr:mr-2 rtl:ml-2 shrink-0"
                                                 width="18"
@@ -941,10 +944,9 @@ const Header = () => {
                                                 />
                                             </svg>
                                             Sign Out
-                                        </Link>
-                                    </li>
-                                    <li className="border-t border-white-light dark:border-white-light/10">
-                                        <Link href="/api/auth/login" className="!py-3 text-primary">
+                                        </button>
+                                    </li>) : (<li className="border-t border-white-light dark:border-white-light/10">
+                                        <button onClick={() => signIn()} className="!py-3 text-primary">
                                             <svg
                                                 className="rotate-90 ltr:mr-2 rtl:ml-2 shrink-0"
                                                 width="18"
@@ -968,8 +970,10 @@ const Header = () => {
                                                 />
                                             </svg>
                                             Sign in
-                                        </Link>
-                                    </li>
+                                        </button>
+                                    </li>)}
+                                    
+                                    
                                 </ul>
                             </Dropdown>
                         </div>
