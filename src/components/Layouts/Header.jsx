@@ -811,7 +811,7 @@ const Header = () => {
                                         alt="userProfile"
                                     />
                                 }>
-                                <ul className="w-[230px] !py-0 font-semibold text-dark dark:text-white-dark dark:text-white-light/90">
+                                <ul className="w-[250px] !py-0 font-semibold text-dark dark:text-white-dark dark:text-white-light/90">
                                     <li>
                                         <div className="flex items-center px-4 py-4">
                                             <img
@@ -828,8 +828,8 @@ const Header = () => {
                                                 </h4>
                                                 <button
                                                     type="button"
-                                                    className="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white">
-                                                    {/* {session?.user?.email} */}
+                                                    className="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white text-ellipsis">
+                                                    {session?.user?.email}
                                                     {/* {console.log(session)} */}
                                                 </button>
                                             </div>
