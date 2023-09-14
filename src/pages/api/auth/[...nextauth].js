@@ -15,19 +15,24 @@ export const authOptions = {
     callbacks: {
         async signIn({ account, profile }) {
             if (account.provider === 'google') {
-                // return profile.email_verified && profile.email.endsWith('@example.com')
                 try {
                     const name = profile.name
-                    const client = await create_client({name})
+                    const client = await create_client({ name })
                     try {
-                        const [client_id, name, last_name, email, email_verified, profile_img] = [client.id]
-                        const user = create_client({})
-                    } catch (error) {
-                        
-                    }
+                        const [client_id, name, last_name, email, email_verified, profile_img] = [
+                            client.id,
+                            profile.given_name,
+                            profile.family_name,
+                            profile.email,
+                            profile.email_verified,
+                            profile.picture,
+                        ]
+                        const user = create_user({ client_id, name, last_name, email, email_verified, profile_img })
+                        return user
+                    } catch (error) {}
                     console.log(client)
                 } catch (error) {
-                    console.log(error);
+                    console.log(error)
                 }
             }
             return true // Do different verification for other providers that don't have `email_verified`
