@@ -27,10 +27,11 @@ export const authOptions = {
                             profile.email_verified,
                             profile.picture,
                         ]
-                        const user = create_user({ client_id, name, last_name, email, email_verified, profile_img })
+                        const user = await create_user({ client_id, name, last_name, email, email_verified, profile_img })
                         return user
-                    } catch (error) {}
-                    console.log(client)
+                    } catch (error) {
+                        console.log(error)
+                    }
                 } catch (error) {
                     console.log(error)
                 }
