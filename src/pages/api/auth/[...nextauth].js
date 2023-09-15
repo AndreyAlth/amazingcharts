@@ -38,7 +38,7 @@ export const authOptions = {
                         console.log(error)
                     }
                 }
-                
+                return true
             }
             return true // Do different verification for other providers that don't have `email_verified`
         },
