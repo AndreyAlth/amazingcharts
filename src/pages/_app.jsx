@@ -5,12 +5,14 @@ import Head from 'next/head'
 import store from '@/store/index'
 import { appWithI18Next } from 'ni18n'
 import { ni18nConfig } from 'ni18n.config'
-import { UserProvider } from '@auth0/nextjs-auth0/client'
+//import { UserProvider } from '@auth0/nextjs-auth0/client'
+import { SessionProvider } from 'next-auth/react'
 
-const App = ({ Component, pageProps }) => {
+const App = ({ Component, pageProps: { session, ...pageProps } }) => {
     const getLayout = Component.getLayout ?? ((page) => <DefaultLayout>{page}</DefaultLayout>)
     return (
-        <UserProvider>
+        //<UserProvider>
+        <SessionProvider session={session}>
             <Provider store={store}>
                 <Head>
                     <title>VRISTO - Multipurpose Tailwind Dashboard Template</title>
@@ -23,7 +25,9 @@ const App = ({ Component, pageProps }) => {
 
                 {getLayout(<Component {...pageProps} />)}
             </Provider>
-        </UserProvider>
+        </SessionProvider>
+
+        //</UserProvider>
     )
 }
 
