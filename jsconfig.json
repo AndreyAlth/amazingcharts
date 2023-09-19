@@ -10,7 +10,9 @@
             "@/hooks/*": ["./src/hooks/*"],
             "@/contexts/*": ["./src/contexts/*"],
             "@/store/*": ["./src/store/*"],
-            "@/config/*": ["./src/config/*"]
+            "@/config/*": ["./src/config/*"],
+            "@/db/*": ["./src/backend/conection/*"],
+            "@/backend/*": ["./src/backend/*"]
         }
     }
 }
