@@ -18,22 +18,15 @@ export const authOptions = {
                 const existed_user = await get_user_by_email(profile.email)
                 if (!existed_user) {
                     try {
-                        const name = profile.name
-                        const client = await create_client({ name })
-                        try {
-                            const [client_id, name, last_name, email, email_verified, profile_img] = [
-                                client.id,
-                                profile.given_name,
-                                profile.family_name,
-                                profile.email,
-                                profile.email_verified,
-                                profile.picture,
-                            ]
-                            const user = await create_user({ client_id, name, last_name, email, email_verified, profile_img })
-                            return user
-                        } catch (error) {
-                            console.log(error)
-                        }
+                        const [name, last_name, email, email_verified, profile_img] = [
+                            profile.given_name,
+                            profile.family_name,
+                            profile.email,
+                            profile.email_verified,
+                            profile.picture,
+                        ]
+                        const user = await create_user({ name, last_name, email, email_verified, profile_img })
+                        return user
                     } catch (error) {
                         console.log(error)
                     }
