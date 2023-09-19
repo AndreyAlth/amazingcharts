@@ -728,12 +728,10 @@ const Header = () => {
                                                         Pro
                                                     </span>
                                                 </h4>
-                                                {console.log(session)}
                                                 <button
                                                     type="button"
                                                     className="text-black/60 hover:text-primary dark:text-dark-light/60 dark:hover:text-white text-ellipsis">
                                                     {session?.user?.email}
-                                                    {/* {console.log(session)} */}
                                                 </button>
                                             </div>
                                         </div>
