@@ -5,8 +5,10 @@ export async function create_client({name}) {
     const res = await conection.query(text, [name])
     return res.rows[0]
 }
-export async function get_user(user_id) {
-    const text = `select * from users where id = $1`
-    const res = await conection.query(text, [user_id])
+
+export async function validate_user_client(client_id) {
+    const text = `select * from clients 
+    inner join users on clients.id = users.client_id`
+    const res = await conection.query(text, [client_id])
     return res.rowCount
 }

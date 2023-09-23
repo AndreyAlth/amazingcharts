@@ -9,7 +9,7 @@ export async function create_user({ client_id, name, last_name, email, email_ver
 export async function get_user_by_email(email) {
     const text = `select * from users where email = $1`
     const res = await conection.query(text, [email])
-    return res.rowCount
+    return res.rows[0]
 }
 
 export async function get_user(user_id) {
