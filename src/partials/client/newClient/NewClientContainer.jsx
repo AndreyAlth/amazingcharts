@@ -1,17 +1,81 @@
+import Link from 'next/link'
 import React, { useState } from 'react'
-import NewClient from './NewClient'
+import IconHome from '@/components/Icon/IconHome'
+import IconUser from '@/components/Icon/IconUser'
+import IconPhone from '@/components/Icon/IconPhone'
+import IconLocation from '@/components/Icon/IconLocation'
 import NewClientHome from './NewClientHome'
 import NewClientAddress from './NewClientAddress'
 import NewClientAdmin from './NewClientAdmin'
+import NewClientDangerZone from './NewClientDangerZone'
 
 function NewClientContainer() {
-    const [tap, setTap] = useState(1)
+    const [tap, setTap] = useState('home')
     return (
         <div>
-            {tap === 1 && <NewClient setTap={setTap}/>}
-            {tap === 2 && <NewClientHome tap={tap} setTap={setTap}/>}
-            {tap === 3 && <NewClientAddress tap={tap} setTap={setTap}/>}
-            {tap === 4 && <NewClientAdmin tap={tap} setTap={setTap}/>}
+            <ul className="flex space-x-2 rtl:space-x-reverse">
+                <li>
+                    <Link href="#" className="text-primary hover:underline">
+                        Users
+                    </Link>
+                </li>
+                <li className="before:content-['/'] ltr:before:mr-2 rtl:before:ml-2">
+                    <span>Account Settings</span>
+                </li>
+            </ul>
+            <div className="pt-5">
+                <div className="mb-5 flex items-center justify-between">
+                    <h5 className="text-lg font-semibold dark:text-white-light">Settings</h5>
+                </div>
+                <div>
+                    <ul className="mb-5 overflow-y-auto whitespace-nowrap border-b border-[#ebedf2] font-semibold dark:border-[#191e3a] sm:flex">
+                        <li className="inline-block">
+                            <button
+                                onClick={() => setTap('home')}
+                                className={`flex gap-2 border-b border-transparent p-4 hover:border-primary hover:text-primary ${
+                                    tap === 'home' ? '!border-primary text-primary' : ''
+                                }`}>
+                                <IconHome />
+                                Home
+                            </button>
+                        </li>
+                        <li className="inline-block">
+                            <button
+                                onClick={() => setTap('payment-details')}
+                                className={`flex gap-2 border-b border-transparent p-4 hover:border-primary hover:text-primary ${
+                                    tap === 'payment-details' ? '!border-primary text-primary' : ''
+                                }`}>
+                                <IconLocation />
+                                Payment Details
+                            </button>
+                        </li>
+                        <li className="inline-block">
+                            <button
+                                onClick={() => setTap('preferences')}
+                                className={`flex gap-2 border-b border-transparent p-4 hover:border-primary hover:text-primary ${
+                                    tap === 'preferences' ? '!border-primary text-primary' : ''
+                                }`}>
+                                <IconUser className="w-5 h-5" />
+                                Preferences
+                            </button>
+                        </li>
+                        <li className="inline-block">
+                            <button
+                                onClick={() => setTap('danger-zone')}
+                                className={`flex gap-2 border-b border-transparent p-4 hover:border-primary hover:text-primary ${
+                                    tap === 'danger-zone' ? '!border-primary text-primary' : ''
+                                }`}>
+                                <IconPhone />
+                                Danger Zone
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                {tap === 'home' && <NewClientHome />}
+                {tap === 'payment-details' && <NewClientAddress />}
+                {tap === 'preferences' && <NewClientAdmin />}
+                {tap === 'danger-zone' && <NewClientDangerZone />}
+            </div>
         </div>
     )
 }

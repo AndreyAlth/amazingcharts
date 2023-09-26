@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useSession } from 'next-auth/react'
-import NewClientContainer from '@/partials/client/newClient/NewClientContainer'
-import NewClientHome from '@/partials/client/newClient/NewClientHome'
+import NewClientContainer from '@/partials/client/newClient/NewClientStart'
+// import NewClientHome from '@/partials/client/newClient/NewClientHome'
 
 function Dashboard() {
   const { data: session } = useSession()
