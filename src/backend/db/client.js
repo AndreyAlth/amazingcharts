@@ -1,7 +1,7 @@
 import conection from '@/db/conection'
 
-export async function create_client({name}) {
-    const text = `INSERT into clients (name, created) values($1, now()) returning *`
+export async function create_empty_client({name}) {
+    const text = `INSERT into clients (name) values(null) returning *`
     const res = await conection.query(text, [name])
     return res.rows[0]
 }

@@ -1,6 +1,6 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSession } from 'next-auth/react'
-import NewClientContainer from '@/partials/client/newClient/NewClientStart'
+import NewClientStart from '@/partials/client/newClient/NewClientStart'
 import ClientProfile from '@/partials/client/Profile/ClientProfile'
 
 function Dashboard() {
@@ -8,7 +8,7 @@ function Dashboard() {
     return (
         <div>
             {
-                session?.user?.client_id ? <ClientProfile /> : <NewClientContainer/>
+                session?.user?.client_id ? <ClientProfile /> : <NewClientStart/>
             }
         </div>
     )
