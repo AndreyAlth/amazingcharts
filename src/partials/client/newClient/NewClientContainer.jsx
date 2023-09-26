@@ -71,10 +71,10 @@ function NewClientContainer() {
                         </li>
                     </ul>
                 </div>
-                {tap === 'home' && <NewClientHome setTap={setTap}/>}
-                {tap === 'address' && <NewClientAddress setTap={setTap}/>}
-                {tap === 'admins' && <NewClientAdmin setTap={setTap}/>}
-                {tap === 'danger-zone' && <NewClientDangerZone setTap={setTap}/>}
+                {tap === 'home' && <NewClientHome />}
+                {tap === 'address' && <NewClientAddress />}
+                {tap === 'admins' && <NewClientAdmin />}
+                {tap === 'danger-zone' && <NewClientDangerZone />}
             </div>
         </div>
     )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-function NewClientHome({setTap}) {
+function NewClientHome() {
     return (
         <div>
             <form className="mb-5 rounded-md border border-[#ebedf2] bg-white p-4 dark:border-[#191e3a] dark:bg-black">
@@ -63,7 +63,7 @@ function NewClientHome({setTap}) {
                             <input id="web" type="text" placeholder="Enter URL" className="form-input" />
                         </div> */}
                         <div className="mt-3 sm:col-span-2">
-                            <button className="btn btn-primary" onClick={() => setTap('address')}>Next</button>
+                            <button className="btn btn-primary" onClick={() => console.log('saved')}>Save</button>
                         </div>
                     </div>
                 </div>
