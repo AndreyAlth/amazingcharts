@@ -63,7 +63,7 @@ function NewClientHome({setTap}) {
                             <input id="web" type="text" placeholder="Enter URL" className="form-input" />
                         </div> */}
                         <div className="mt-3 sm:col-span-2">
-                            <button className="btn btn-primary" onClick={() => setTap('payment-details')}>Next</button>
+                            <button className="btn btn-primary" onClick={() => setTap('address')}>Next</button>
                         </div>
                     </div>
                 </div>

@@ -41,22 +41,22 @@ function NewClientContainer() {
                         </li>
                         <li className="inline-block">
                             <button
-                                onClick={() => setTap('payment-details')}
+                                onClick={() => setTap('address')}
                                 className={`flex gap-2 border-b border-transparent p-4 hover:border-primary hover:text-primary ${
-                                    tap === 'payment-details' ? '!border-primary text-primary' : ''
+                                    tap === 'address' ? '!border-primary text-primary' : ''
                                 }`}>
                                 <IconLocation />
-                                Payment Details
+                                Address
                             </button>
                         </li>
                         <li className="inline-block">
                             <button
-                                onClick={() => setTap('preferences')}
+                                onClick={() => setTap('admins')}
                                 className={`flex gap-2 border-b border-transparent p-4 hover:border-primary hover:text-primary ${
-                                    tap === 'preferences' ? '!border-primary text-primary' : ''
+                                    tap === 'admins' ? '!border-primary text-primary' : ''
                                 }`}>
                                 <IconUser className="w-5 h-5" />
-                                Preferences
+                                Administrators
                             </button>
                         </li>
                         <li className="inline-block">
@@ -72,8 +72,8 @@ function NewClientContainer() {
                     </ul>
                 </div>
                 {tap === 'home' && <NewClientHome setTap={setTap}/>}
-                {tap === 'payment-details' && <NewClientAddress setTap={setTap}/>}
-                {tap === 'preferences' && <NewClientAdmin setTap={setTap}/>}
+                {tap === 'address' && <NewClientAddress setTap={setTap}/>}
+                {tap === 'admins' && <NewClientAdmin setTap={setTap}/>}
                 {tap === 'danger-zone' && <NewClientDangerZone setTap={setTap}/>}
             </div>
         </div>

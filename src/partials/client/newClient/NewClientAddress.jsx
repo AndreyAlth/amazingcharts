@@ -1,128 +1,12 @@
 import React from 'react'
 
-function NewClientAddress() {
+function NewClientAddress({setTap}) {
     return (
         <div>
-            <div className="mb-5 grid grid-cols-1 gap-5 lg:grid-cols-2">
-                <div className="panel">
-                    <div className="mb-5">
-                        <h5 className="mb-4 text-lg font-semibold">Billing Address</h5>
-                        <p>
-                            Changes to your <span className="text-primary">Billing</span> information will take effect
-                            starting with scheduled payment and will be refelected on your next invoice.
-                        </p>
-                    </div>
-                    <div className="mb-5">
-                        <div className="border-b border-[#ebedf2] dark:border-[#1b2e4b]">
-                            <div className="flex items-start justify-between py-3">
-                                <h6 className="text-[15px] font-bold text-[#515365] dark:text-white-dark">
-                                    Address #1
-                                    <span className="mt-1 block text-xs font-normal text-white-dark dark:text-white-light">
-                                        2249 Caynor Circle, New Brunswick, New Jersey
-                                    </span>
-                                </h6>
-                                <div className="flex items-start justify-between ltr:ml-auto rtl:mr-auto">
-                                    <button className="btn btn-dark">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="border-b border-[#ebedf2] dark:border-[#1b2e4b]">
-                            <div className="flex items-start justify-between py-3">
-                                <h6 className="text-[15px] font-bold text-[#515365] dark:text-white-dark">
-                                    Address #2
-                                    <span className="mt-1 block text-xs font-normal text-white-dark dark:text-white-light">
-                                        4262 Leverton Cove Road, Springfield, Massachusetts
-                                    </span>
-                                </h6>
-                                <div className="flex items-start justify-between ltr:ml-auto rtl:mr-auto">
-                                    <button className="btn btn-dark">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="flex items-start justify-between py-3">
-                                <h6 className="text-[15px] font-bold text-[#515365] dark:text-white-dark">
-                                    Address #3
-                                    <span className="mt-1 block text-xs font-normal text-white-dark dark:text-white-light">
-                                        2692 Berkshire Circle, Knoxville, Tennessee
-                                    </span>
-                                </h6>
-                                <div className="flex items-start justify-between ltr:ml-auto rtl:mr-auto">
-                                    <button className="btn btn-dark">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button className="btn btn-primary">Add Address</button>
-                </div>
-                <div className="panel">
-                    <div className="mb-5">
-                        <h5 className="mb-4 text-lg font-semibold">Payment History</h5>
-                        <p>
-                            Changes to your <span className="text-primary">Payment Method</span> information will take
-                            effect starting with scheduled payment and will be refelected on your next invoice.
-                        </p>
-                    </div>
-                    <div className="mb-5">
-                        <div className="border-b border-[#ebedf2] dark:border-[#1b2e4b]">
-                            <div className="flex items-start justify-between py-3">
-                                <div className="flex-none ltr:mr-4 rtl:ml-4">
-                                    <img src="/assets/images/card-americanexpress.svg" alt="img" />
-                                </div>
-                                <h6 className="text-[15px] font-bold text-[#515365] dark:text-white-dark">
-                                    Mastercard
-                                    <span className="mt-1 block text-xs font-normal text-white-dark dark:text-white-light">
-                                        XXXX XXXX XXXX 9704
-                                    </span>
-                                </h6>
-                                <div className="flex items-start justify-between ltr:ml-auto rtl:mr-auto">
-                                    <button className="btn btn-dark">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="border-b border-[#ebedf2] dark:border-[#1b2e4b]">
-                            <div className="flex items-start justify-between py-3">
-                                <div className="flex-none ltr:mr-4 rtl:ml-4">
-                                    <img src="/assets/images/card-mastercard.svg" alt="img" />
-                                </div>
-                                <h6 className="text-[15px] font-bold text-[#515365] dark:text-white-dark">
-                                    American Express
-                                    <span className="mt-1 block text-xs font-normal text-white-dark dark:text-white-light">
-                                        XXXX XXXX XXXX 310
-                                    </span>
-                                </h6>
-                                <div className="flex items-start justify-between ltr:ml-auto rtl:mr-auto">
-                                    <button className="btn btn-dark">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div>
-                            <div className="flex items-start justify-between py-3">
-                                <div className="flex-none ltr:mr-4 rtl:ml-4">
-                                    <img src="/assets/images/card-visa.svg" alt="img" />
-                                </div>
-                                <h6 className="text-[15px] font-bold text-[#515365] dark:text-white-dark">
-                                    Visa
-                                    <span className="mt-1 block text-xs font-normal text-white-dark dark:text-white-light">
-                                        XXXX XXXX XXXX 5264
-                                    </span>
-                                </h6>
-                                <div className="flex items-start justify-between ltr:ml-auto rtl:mr-auto">
-                                    <button className="btn btn-dark">Edit</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <button className="btn btn-primary">Add Payment Method</button>
-                </div>
-            </div>
             <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-                <div className="panel">
+                <div className="panel col-span-2">
                     <div className="mb-5">
-                        <h5 className="mb-4 text-lg font-semibold">Add Billing Address</h5>
-                        <p>
-                            Changes your New <span className="text-primary">Billing</span> Information.
-                        </p>
+                        <h5 className="mb-4 text-lg font-semibold">Add Your Address</h5>
                     </div>
                     <div className="mb-5">
                         <form>
@@ -177,13 +61,13 @@ function NewClientAddress() {
                                     <input id="billingZip" type="text" placeholder="Enter Zip" className="form-input" />
                                 </div>
                             </div>
-                            <button type="button" className="btn btn-primary">
-                                Add
+                            <button className="btn btn-primary" onClick={() => setTap('admins')}>
+                                Next
                             </button>
                         </form>
                     </div>
                 </div>
-                <div className="panel">
+                {/* <div className="panel">
                     <div className="mb-5">
                         <h5 className="mb-4 text-lg font-semibold">Add Payment Method</h5>
                         <p>
@@ -239,7 +123,7 @@ function NewClientAddress() {
                             </button>
                         </form>
                     </div>
-                </div>
+                </div> */}
             </div>
         </div>
     )
