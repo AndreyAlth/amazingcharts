@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import IconPlus from '@/components/Icon/IconPlus'
+import IconLoading from '@/components/Icon/IconLoading'
 import { create_empty_client } from '@/requests/client'
 import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
@@ -47,9 +48,18 @@ function NewClient({ setStartClient }) {
                     <img src="/assets/images/create-company.svg" alt="create company logo" />
 
                     <p className="mx-auto flex max-w-[190px] justify-center rounded-md">
-                        <button className="btn btn-primary w-full" onClick={createClient}>
-                            <IconPlus className="ltr:mr-2 rtl:ml-2 shrink-0" />
-                            {loading ? 'Cargando...' : 'Create company'}
+                        <button className="btn btn-primary w-full gap-2" onClick={createClient}>
+                            {loading ? (
+                                <>
+                                    <IconLoading />
+                                    Cargando...
+                                </>
+                            ) : (
+                                <>
+                                    <IconPlus />
+                                    Create company
+                                </>
+                            )}
                         </button>
                     </p>
                 </div>
