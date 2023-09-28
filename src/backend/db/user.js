@@ -18,8 +18,8 @@ export async function get_user(user_id) {
     return res.rowCount
 }
 
-export async function add_client_user(user_id, client_id) {
-    const text = `update users set client_id = $2 where id = $1`
+export async function add_client_user({user_id, client_id}) {
+    const text = `update users set client_id = $2 where id = $1 returning *`
     const res = await conection.query(text, [user_id, client_id])
-    return res.rowCount
+    return res.rows[0]
 }

@@ -1,12 +1,12 @@
 import React from 'react'
 import IconPlus from '@/components/Icon/IconPlus'
+import { create_empty_client } from '@/requests/client'
 
 function NewClient({ setStartClient }) {
-
     const createClient = async () => {
+        const resp = await create_empty_client()
         setStartClient(true)
     }
-
 
     return (
         <div className={`h-full gap-5 sm:h-[calc(100vh_-_150px)] sm:min-h-0 min-h-[999px]`}>
