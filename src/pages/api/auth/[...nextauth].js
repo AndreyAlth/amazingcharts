@@ -42,10 +42,8 @@ export const authOptions = {
         },
         async session({ session, user, token }) {
             const verified_user = await get_user_by_email(session.user.email)
-            console.log(verified_user)
             session.user.user_id = verified_user.id
             session.user.client_id = verified_user.client_id
-            console.log(session)
             return session
         },
     },

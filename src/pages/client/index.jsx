@@ -10,7 +10,8 @@ function Dashboard() {
     return (
         <div>
             {
-                session?.user?.client_id ? <ClientProfile /> : <NewClientStart/>
+                // session?.user?.client_id ? <ClientProfile /> : <NewClientStart/>
+                <NewClientStart/>
             }
             <ToastContainer />
         </div>

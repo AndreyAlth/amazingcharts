@@ -12,7 +12,7 @@ function NewClient({ setStartClient }) {
         setLoading(true)
         const resp = await create_empty_client({ user_id: session?.user?.user_id })
         if (resp?.status === 200) {
-            toast.success('Correo enviado', {
+            toast.success('Comany created', {
                 position: 'top-center',
                 autoClose: 1500,
                 hideProgressBar: true,
@@ -27,7 +27,7 @@ function NewClient({ setStartClient }) {
         }
 
         if (resp?.response?.status === 404) {
-            toast.error('No se pudo crear el cliente', {
+            toast.error('there was an error, campany not created', {
                 position: 'top-center',
                 autoClose: 1500,
                 hideProgressBar: true,
