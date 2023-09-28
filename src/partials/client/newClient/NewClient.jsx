@@ -1,11 +1,43 @@
-import React from 'react'
+import React, { useState } from 'react'
 import IconPlus from '@/components/Icon/IconPlus'
 import { create_empty_client } from '@/requests/client'
+import { toast } from 'react-toastify'
+import { useSession } from 'next-auth/react'
 
 function NewClient({ setStartClient }) {
+    const { data: session } = useSession()
+    const [loading, setLoading] = useState(false)
     const createClient = async () => {
-        const resp = await create_empty_client()
-        setStartClient(true)
+        setLoading(true)
+        const resp = await create_empty_client({ user_id: session?.user?.user_id })
+        if (resp?.status === 200) {
+            toast.success('Correo enviado', {
+                position: 'top-center',
+                autoClose: 1500,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'dark',
+            })
+            setStartClient(true)
+            setLoading(false)
+        }
+
+        if (resp?.response?.status === 404) {
+            toast.error('No se pudo crear el cliente', {
+                position: 'top-center',
+                autoClose: 1500,
+                hideProgressBar: true,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+                theme: 'dark',
+            })
+            setLoading(false)
+        }
     }
 
     return (
@@ -17,7 +49,7 @@ function NewClient({ setStartClient }) {
                     <p className="mx-auto flex max-w-[190px] justify-center rounded-md">
                         <button className="btn btn-primary w-full" onClick={createClient}>
                             <IconPlus className="ltr:mr-2 rtl:ml-2 shrink-0" />
-                            Create company
+                            {loading ? 'Cargando...' : 'Create company'}
                         </button>
                     </p>
                 </div>

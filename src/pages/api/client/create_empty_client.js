@@ -12,7 +12,7 @@ export default async function POST(req, res) {
         res.status(200).json(resp)
     }
     } catch (error) {
-        res.json('Hubo un error al crear el cliente')
+        res.status(404).json('Hubo un error al crear el cliente')
         
     }
 }
