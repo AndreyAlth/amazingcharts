@@ -18,14 +18,13 @@ function NewClientHome() {
         const resp = await get_client(session?.user?.client_id)
         if (resp.status === 200) {
             setClient({
-            name: resp?.data?.name,
-            email: resp?.data?.email,
-            website: resp?.data?.website,
-            phone: resp?.data?.phone,
-            desc: resp?.data?.desc,
-        })
+                name: resp?.data?.name,
+                email: resp?.data?.email,
+                website: resp?.data?.website,
+                phone: resp?.data?.phone,
+                desc: resp?.data?.desc,
+            })
         }
-        
     }
 
     const editClient = async () => {
@@ -43,8 +42,10 @@ function NewClientHome() {
     }
 
     useEffect(() => {
-        getClient()
-    }, [])
+        if (session) {
+            getClient()
+        }
+    }, [session])
 
     return (
         <div>
