@@ -6,6 +6,12 @@ export async function create_empty_client() {
     return res.rows[0]
 }
 
+export async function create_empty_client_address(client_id) {
+    const text = `INSERT into client_address (client_id) values($1) returning *`
+    const res = await conection.query(text, [client_id])
+    return res.rows[0]
+}
+
 export async function validate_user_client(client_id) {
     const text = `select * from clients 
     inner join users on clients.id = users.client_id`
