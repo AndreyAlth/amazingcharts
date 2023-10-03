@@ -13,9 +13,9 @@ export async function validate_user_client(client_id) {
     return res.rowCount
 }
 
-export async function edit_client_general_info(client_id) {
-    const text = `update clients set name = $2, email = $3, website = $4, phone = $5, desc = $6 where id = $1 returning *`
-    const res = await conection.query(text, [client_id])
+export async function edit_client_general_info({ client_id, name, email, website, phone, description }) {
+    const text = `update clients set name = $2, email = $3, website = $4, phone = $5, description = $6 where id = $1 returning *`
+    const res = await conection.query(text, [client_id, name, email, website, phone, description ])
     return res.rowCount
 }
 

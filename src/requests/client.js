@@ -24,7 +24,7 @@ export const create_empty_client = async ({ user_id }) => {
     }
 }
 
-export const edit_client_general_info = async ({ client_id, name, email, website, phone, desc }) => {
+export const edit_client_general_info = async ({ client_id, name, email, website, phone, description }) => {
     try {
         const res = await api.post('/api/client/edit_client_general_info', {
             client_id,
@@ -32,7 +32,7 @@ export const edit_client_general_info = async ({ client_id, name, email, website
             email,
             website,
             phone,
-            desc,
+            description,
         })
         return res
     } catch (error) {
