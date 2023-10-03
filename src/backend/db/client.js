@@ -30,3 +30,9 @@ export async function get_client(client_id) {
     const res = await conection.query(text, [client_id])
     return res.rows[0]
 }
+
+export async function get_client_address(client_id) {
+    const text = `select * from client_address where client_id = $1`
+    const res = await conection.query(text, [client_id])
+    return res.rows[0]
+}

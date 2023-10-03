@@ -52,3 +52,16 @@ export const get_client = async (client_id) => {
         return error
     }
 }
+
+export const get_client_address = async (client_id) => {
+    try {
+        const res = await api.get('/api/client/get_client_address', {
+            params: {
+                client_id
+            }
+        })
+        return res
+    } catch (error) {
+        return error
+    }
+}
