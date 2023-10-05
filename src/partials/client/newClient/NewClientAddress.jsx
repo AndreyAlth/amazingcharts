@@ -1,10 +1,15 @@
-import { get_client_address } from '@/backend/db/client'
+import { get_client_address, edit_client_address } from '@/requests/client'
+import { toast } from 'react-toastify'
+import { useSession } from 'next-auth/react'
 import IconLoading from '@/components/Icon/IconLoading'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
 function NewClientAddress() {
+    const { data: session } = useSession()
     const [loading, setLoading] = useState(false)
     const [clientAddress, setClientAddress] = useState({
+        address_id: null,
+        client_id: null, 
         address: null,
         state: null,
         city: null,
@@ -22,6 +27,8 @@ function NewClientAddress() {
         const resp = await get_client_address(session?.user?.client_id)
         if (resp.status === 200) {
             setClientAddress({
+                address_id: resp?.data?.id,
+                client_id: resp?.data?.client_id,
                 address: resp?.data?.address,
                 state: resp?.data?.state,
                 city: resp?.data?.city,
@@ -32,9 +39,10 @@ function NewClientAddress() {
 
     const editClientAddress = async () => {
         setLoading(true)
-        const resp = await edit_client_general_info({ ...client, client_id: session.user?.client_id })
+        const resp = await edit_client_address({...clientAddress})
+        console.log(resp)
         if (resp.status === 200) {
-            toast.success('Company edited', {
+            toast.success('Address edited', {
                 position: 'top-center',
                 autoClose: 1500,
                 hideProgressBar: true,
@@ -46,7 +54,7 @@ function NewClientAddress() {
             })
             setLoading(false)
         } else {
-            toast.error('Company not edited', {
+            toast.error('Address not edited', {
                 position: 'top-center',
                 autoClose: 1500,
                 hideProgressBar: true,
@@ -73,8 +81,11 @@ function NewClientAddress() {
                     <div className="mb-5">
                         <h5 className="mb-4 text-lg font-semibold">Add Your Address</h5>
                     </div>
+                    {
+                        console.log(clientAddress)
+                    }
                     <div className="mb-5">
-                        <form>
+                        <div>
                             <div className="mb-5 grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                                 <div className="md:col-span-2">
                                     <label htmlFor="billingAddress">Address</label>
@@ -131,7 +142,7 @@ function NewClientAddress() {
                                     <>Save</>
                                 )}
                             </button>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
