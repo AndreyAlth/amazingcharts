@@ -6,8 +6,9 @@ function NewClientStart() {
     const [startClient, setStartClient] = useState(false)
     return (
         <div>
-            {!startClient && <NewClient setStartClient={setStartClient}/>}
-            {startClient && <NewClientContainer/>}
+            {/* {!startClient && <NewClient setStartClient={setStartClient}/>}
+            {startClient && <NewClientContainer/>} */}
+            <NewClient setStartClient={setStartClient}/>
         </div>
     )
 }

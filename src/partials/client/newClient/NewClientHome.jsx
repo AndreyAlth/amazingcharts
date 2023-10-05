@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { edit_client_general_info, get_client } from '@/requests/client'
+import { edit_client_general_info } from '@/requests/client'
 import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
 import IconLoading from '@/components/Icon/IconLoading'
+import { getClient } from '@/hooks/client'
 
 function NewClientHome() {
     const { data: session } = useSession()
@@ -20,19 +21,6 @@ function NewClientHome() {
             ...client,
             [nameKey]: value,
         })
-    }
-
-    const getClient = async () => {
-        const resp = await get_client(session?.user?.client_id)
-        if (resp.status === 200) {
-            setClient({
-                name: resp?.data?.name,
-                email: resp?.data?.email,
-                website: resp?.data?.website,
-                phone: resp?.data?.phone,
-                description: resp?.data?.description,
-            })
-        }
     }
 
     const editClient = async () => {
@@ -67,7 +55,7 @@ function NewClientHome() {
 
     useEffect(() => {
         if (session) {
-            getClient()
+            getClient(session?.user?.client_id, setClient)
         }
     }, [session])
 
