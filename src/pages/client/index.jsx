@@ -11,6 +11,7 @@ function Dashboard() {
         <div>
             {
                 session?.user?.client_id != null ? <ClientProfile /> : <NewClientStart/>
+                // <NewClientStart/>
             }
             <ToastContainer />
         </div>

@@ -1,8 +1,9 @@
-import { get_client_address, edit_client_address } from '@/requests/client'
+import { edit_client_address } from '@/requests/client'
 import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
 import IconLoading from '@/components/Icon/IconLoading'
 import React, { useState, useEffect } from 'react'
+import { getClientAddres } from '@/hooks/client'
 
 function NewClientAddress() {
     const { data: session } = useSession()
@@ -21,20 +22,6 @@ function NewClientAddress() {
             ...clientAddress,
             [nameKey]: value,
         })
-    }
-
-    const getClientAddres = async () => {
-        const resp = await get_client_address(session?.user?.client_id)
-        if (resp.status === 200) {
-            setClientAddress({
-                address_id: resp?.data?.id,
-                client_id: resp?.data?.client_id,
-                address: resp?.data?.address,
-                state: resp?.data?.state,
-                city: resp?.data?.city,
-                zip_code: resp?.data?.zip_code,
-            })
-        }
     }
 
     const editClientAddress = async () => {
@@ -70,7 +57,7 @@ function NewClientAddress() {
 
     useEffect(() => {
         if (session) {
-            getClientAddres()
+            getClientAddres(session?.user?.client_id, setClientAddress)
         }
     }, [session])
 

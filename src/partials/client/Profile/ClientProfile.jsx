@@ -7,7 +7,6 @@ import IconPhone from '@/components/Icon/IconPhone'
 import IconLocation from '@/components/Icon/IconLocation'
 import IconMail from '@/components/Icon/IconMail'
 import { useSession } from 'next-auth/react'
-import { get_client_address, get_client } from '@/requests/client'
 import {getClient, getClientAddres} from '@/hooks/client'
 
 function ClientProfile() {
