@@ -1,8 +1,9 @@
 import NextAuth from 'next-auth'
-// import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from 'next-auth/providers/google'
 import { create_user, get_user_by_email } from '@/backend/db/user'
-import { create_client } from '@/backend/db/client'
+
+let user_id = null
+let client_id = null
 
 export const authOptions = {
     // Configure one or more authentication providers
@@ -26,14 +27,24 @@ export const authOptions = {
                             profile.picture,
                         ]
                         const user = await create_user({ name, last_name, email, email_verified, profile_img })
+                        user_id = user.id
+                        client_id = user.client_id
                         return user
                     } catch (error) {
                         console.log(error)
                     }
                 }
+                user_id = existed_user.id
+                client_id = existed_user.client_id
                 return true
             }
             return true // Do different verification for other providers that don't have `email_verified`
+        },
+        async session({ session, user, token }) {
+            const verified_user = await get_user_by_email(session.user.email)
+            session.user.user_id = verified_user.id
+            session.user.client_id = verified_user.client_id
+            return session
         },
     },
 }
