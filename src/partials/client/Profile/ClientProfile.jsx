@@ -8,6 +8,7 @@ import IconLocation from '@/components/Icon/IconLocation'
 import IconMail from '@/components/Icon/IconMail'
 import { useSession } from 'next-auth/react'
 import { get_client_address, get_client } from '@/requests/client'
+import {getClient, getClientAddres} from '@/hooks/client'
 
 function ClientProfile() {
     const { data: session } = useSession()
@@ -27,36 +28,10 @@ function ClientProfile() {
         zip_code: null,
     })
 
-    const getClient = async () => {
-        const resp = await get_client(session?.user?.client_id)
-        if (resp.status === 200) {
-            setClient({
-                name: resp?.data?.name,
-                email: resp?.data?.email,
-                website: resp?.data?.website,
-                phone: resp?.data?.phone,
-                description: resp?.data?.description,
-            })
-        }
-    }
-
-    const getClientAddres = async () => {
-        const resp = await get_client_address(session?.user?.client_id)
-        if (resp.status === 200) {
-            setClientAddress({
-                address_id: resp?.data?.id,
-                client_id: resp?.data?.client_id,
-                address: resp?.data?.address,
-                state: resp?.data?.state,
-                city: resp?.data?.city,
-                zip_code: resp?.data?.zip_code,
-            })
-        }
-    }
     useEffect(() => {
         if (session) {
-            getClient()
-            getClientAddres()
+            getClient(session?.user?.client_id, setClient)
+            getClientAddres(session?.user?.client_id, setClientAddress)
         }
     }, [session])
     return (
