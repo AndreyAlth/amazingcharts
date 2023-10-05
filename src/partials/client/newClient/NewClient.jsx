@@ -4,10 +4,13 @@ import IconLoading from '@/components/Icon/IconLoading'
 import { create_empty_client } from '@/requests/client'
 import { toast } from 'react-toastify'
 import { useSession } from 'next-auth/react'
+import { useRouter } from 'next/router'
 
 function NewClient({ setStartClient }) {
+    const router = useRouter()
     const { data: session } = useSession()
     const [loading, setLoading] = useState(false)
+
     const createClient = async () => {
         setLoading(true)
         const resp = await create_empty_client({ user_id: session?.user?.user_id })
@@ -24,6 +27,7 @@ function NewClient({ setStartClient }) {
             })
             setStartClient(true)
             setLoading(false)
+            router.push('/client/edit')
         }
 
         if (resp?.response?.status === 404) {

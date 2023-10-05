@@ -51,7 +51,7 @@ function ClientProfile() {
                         <div className="mb-5 flex items-center justify-between">
                             <h5 className="text-lg font-semibold dark:text-white-light">Profile</h5>
                             <Link
-                                href="/users/user-account-settings"
+                                href="/client/edit"
                                 className="btn btn-primary rounded-full p-2 ltr:ml-auto rtl:mr-auto">
                                 <IconPencilPaper />
                             </Link>
@@ -67,13 +67,16 @@ function ClientProfile() {
                                 <p className="text-xl font-semibold text-primary">Jimmy Turner</p>
                             </div> */}
                             <ul className="m-auto mt-5 flex max-w-[300px] flex-col space-y-4 font-semibold text-white-dark">
+                                {client.name && (
                                 <li className="flex items-center gap-2">
                                 <IconHome />
                                 {client?.name}
                                 </li>
+                                )}
+                                
                                 <li className="flex items-center gap-2">
                                 <IconLocation />
-                                    {`${clientAddress?.address}, ${clientAddress?.state}, ${clientAddress?.city}, ${clientAddress?.zip_code}.`}
+                                    {`${clientAddress.address ? clientAddress.address : ''}, ${clientAddress.state ? clientAddress.state : ''}, ${clientAddress.city ? clientAddress.city: ''}, ${clientAddress.zip_code ? clientAddress.zip_code : ''} .`}
                                 </li>
                                 <li className="flex items-center gap-2">
                                     <IconUser className="w-5 h-5" />
