@@ -3,7 +3,7 @@ import NewClient from './NewClient'
 import NewClientContainer from './NewClientContainer'
 
 function NewClientStart() {
-    const [startClient, setStartClient] = useState(true)
+    const [startClient, setStartClient] = useState(false)
     return (
         <div>
             {!startClient && <NewClient setStartClient={setStartClient}/>}
