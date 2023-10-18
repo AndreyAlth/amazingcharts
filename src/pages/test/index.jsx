@@ -1,30 +1,52 @@
 import { useEffect, useState } from 'react'
+import { get_socket } from '@/requests/socket'
 import io from 'socket.io-client'
+import { useSession } from 'next-auth/react'
 let socket
 
 export default function Home() {
+    const { data: session } = useSession()
+    // const [user_id, setUser_id] = useState(null)
     const [input, setInput] = useState('')
+
     const socketInitializer = async () => {
-        await fetch('/api/socket')
+        // await fetch('/api/socket')
+        const user_id = session?.user?.user_id
+        await get_socket(user_id)
         socket = io()
 
         socket.on('connect', () => {
             console.log('connected')
         })
 
-        socket.on('update-input', (msg) => {
-            setInput(msg)
+        socket.on('update-input', (e) => {
+            if (e.user_id === session.user.user_id) {
+                setInput(e.input_value)
+            }
         })
     }
 
     const onChangeHandler = (e) => {
         setInput(e.target.value)
-        socket.emit('input-change', e.target.value)
+        socket.emit('input-change', { user_id: 15, input_value: e.target.value })
     }
 
     useEffect(() => {
-        socketInitializer()
-    }, [])
+        if (session) {
+            socketInitializer()
+        }
+    }, [session])
 
-    return <input className="text-black" placeholder="Type something" value={input} onChange={onChangeHandler} />
+    return (
+        <div>
+            {console.log(session)}
+            <input className="text-black" placeholder="Type something" value={input} onChange={onChangeHandler} />
+            {/* <input
+                className="text-black"
+                placeholder="user_id"
+                value={user_id}
+                onChange={(e) => setUser_id(e.target.value)}
+            /> */}
+        </div>
+    )
 }
