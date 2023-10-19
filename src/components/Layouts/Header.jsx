@@ -6,7 +6,7 @@ import { useSession, signIn, signOut } from 'next-auth/react'
 import { useTranslation } from 'react-i18next'
 import Dropdown from '@/components/Dropdown'
 import Link from 'next/link'
-import Image from 'next/image'
+import BellNotification from '@/partials/header/BellNotification'
 
 const Header = () => {
     const router = useRouter()
@@ -556,7 +556,9 @@ const Header = () => {
                                 </ul>
                             </Dropdown>
                         </div>
-                        <div className="dropdown shrink-0">
+                        {/* Notifications */}
+                        <BellNotification />
+                        {/* <div className="dropdown shrink-0">
                             <Dropdown
                                 offset={[0, 8]}
                                 placement={`${isRtl ? 'bottom-start' : 'bottom-end'}`}
@@ -587,10 +589,17 @@ const Header = () => {
                                                 strokeLinecap="round"
                                             />
                                         </svg>
-                                        <span className="absolute top-0 flex h-3 w-3 ltr:right-0 rtl:left-0">
-                                            <span className="absolute -top-[3px] inline-flex h-full w-full animate-ping rounded-full bg-success/50 opacity-75 ltr:-left-[3px] rtl:-right-[3px]"></span>
-                                            <span className="relative inline-flex h-[6px] w-[6px] rounded-full bg-success"></span>
-                                        </span>
+                                        {notifications.length > 0 && (
+                                            <span className="absolute -top-2 h-5 w-5 ltr:-right-1 rtl:left-1">
+                                                <span className="absolute -top-[0px] inline-flex h-full w-full animate-ping rounded-full bg-notification/50 opacity-75 ltr:-left-[1px] rtl:-right-[1px]"></span>
+                                                <span className="relative inline-flex h-[18px] w-[18px] rounded-full  bg-notification">
+                                                    <span className="text-xs font-semibold text-center w-full">
+                                                        {' '}
+                                                        {notifications.length}
+                                                    </span>
+                                                </span>
+                                            </span>
+                                        )}
                                     </span>
                                 }>
                                 <ul className="w-[300px] divide-y !py-0 text-dark dark:divide-white/10 dark:text-white-dark sm:w-[350px]">
@@ -699,7 +708,7 @@ const Header = () => {
                                     )}
                                 </ul>
                             </Dropdown>
-                        </div>
+                        </div> */}
                         {/* Perfil */}
                         <div className="dropdown flex shrink-0">
                             <Dropdown

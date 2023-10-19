@@ -6,7 +6,7 @@ let socket
 
 export default function Home() {
     const { data: session } = useSession()
-    // const [user_id, setUser_id] = useState(null)
+    const [user_id, setUser_id] = useState(null)
     const [input, setInput] = useState('')
 
     const socketInitializer = async () => {
@@ -31,6 +31,11 @@ export default function Home() {
         socket.emit('input-change', { user_id: 15, input_value: e.target.value })
     }
 
+    const onClickHandler = (e) => {
+        socket.emit('send-notification', { user_id })
+        // socket?.emit('input-change', { user_id: 15, input_value: e.target.value })
+    }
+
     useEffect(() => {
         if (session) {
             socketInitializer()
@@ -39,14 +44,16 @@ export default function Home() {
 
     return (
         <div>
-            {console.log(session)}
             <input className="text-black" placeholder="Type something" value={input} onChange={onChangeHandler} />
-            {/* <input
+            <input
                 className="text-black"
                 placeholder="user_id"
                 value={user_id}
                 onChange={(e) => setUser_id(e.target.value)}
-            /> */}
+            />
+            <button className="bg-blue-100" onClick={onClickHandler}>
+                add notification
+            </button>
         </div>
     )
 }

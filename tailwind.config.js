@@ -17,6 +17,9 @@ module.exports = {
       //   'gradient-conic':
       //     'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       // },
+      fontSize:{
+        xs: ['0.75rem', { lineHeight: '1.5' }],
+      },
       colors: {
         primary: {
           DEFAULT: '#4361ee',
@@ -47,6 +50,11 @@ module.exports = {
           DEFAULT: '#2196f3',
           light: '#e7f7ff',
           'dark-light': 'rgba(33,150,243,.15)',
+        },
+        notification: {
+          DEFAULT: '#e41e3f',
+          light: '#fff5f5',
+          'dark-light': 'rgba(238,30,60,.15)',
         },
         dark: {
           DEFAULT: '#3b3f5c',
