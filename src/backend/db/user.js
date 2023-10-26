@@ -1,7 +1,7 @@
 import conection from '@/db/conection'
 
 export async function create_user({ client_id, name, last_name, email, email_verified, profile_img }) {
-    const text = `INSERT into users (client_id, name, last_name, email, email_verified, profile_img, created) values($1, $2, $3, $4, $5, $6, now()) returning *`
+    const text = `INSERT into users (client_id, name, last_name, email, email_verified, image, created) values($1, $2, $3, $4, $5, $6, now()) returning *`
     const res = await conection.query(text, [client_id, name, last_name, email, email_verified, profile_img])
     return res.rowCount
 }

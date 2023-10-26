@@ -38,7 +38,7 @@ export async function get_client_address(client_id) {
 }
 
 export async function edit_client_address({ address_id, client_id, address, state, city, zip_code }) {
-    const text = `update client_address set address = $3, state = $4, city = $5, zip_code = $6 where id = $1 and client_id = $2 returning *`
+    const text = `update client_address set address = $3, state = $4, city = $5,   = $6 where id = $1 and client_id = $2 returning *`
     const res = await conection.query(text, [address_id, client_id, address, state, city, zip_code])
     return res.rows[0]
 }
