@@ -2,7 +2,7 @@ import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { create_user, get_user_by_email } from '@/backend/db/user'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { hashPass ,comparePassword } from '@/backend/user/password'
+import { comparePassword } from '@/backend/user/password'
 import { getUserByEmail } from '@/requests/user'
 
 let user_id = null
@@ -27,8 +27,6 @@ export const authOptions = {
                 password: { label: 'Password', type: 'password' },
             },
             async authorize(credentials) {
-                // const pass = hashPass(credentials.password)
-                // console.log(pass)
                 const user = await getUserByEmail({ email: credentials.email })
 
                 if (!user.data) {
@@ -73,9 +71,9 @@ export const authOptions = {
             return true // Do different verification for other providers that don't have `email_verified`
         },
         async session({ session, user, token }) {
-            const verified_user = await get_user_by_email(session.user.email)
-            session.user.user_id = verified_user.id
-            session.user.client_id = verified_user.client_id
+            // const verified_user = await get_user_by_email(session.user.email)
+            // session.user.user_id = verified_user.id
+            // session.user.client_id = verified_user.client_id
             return session
         },
     },
