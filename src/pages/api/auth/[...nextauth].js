@@ -2,7 +2,8 @@ import NextAuth from 'next-auth'
 import GoogleProvider from 'next-auth/providers/google'
 import { create_user, get_user_by_email } from '@/backend/db/user'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { hashPass } from '@/backend/user/password'
+import { hashPass ,comparePassword } from '@/backend/user/password'
+import { getUserByEmail } from '@/requests/user'
 
 let user_id = null
 let client_id = null
@@ -22,33 +23,25 @@ export const authOptions = {
             // e.g. domain, username, password, 2FA token, etc.
             // You can pass any HTML attribute to the <input> tag through the object.
             credentials: {
-                // username: { label: 'Username', type: 'text', placeholder: 'jsmith' },
                 email: { label: 'Email', type: 'email', placeholder: 'email' },
                 password: { label: 'Password', type: 'password' },
             },
-            async authorize(credentials, req) {
-                // const a = await hashPass(credentials.password)
-                // console.log(a)
-                return null
-                // You need to provide your own logic here that takes the credentials
-                // submitted and returns either a object representing a user or value
-                // that is false/null if the credentials are invalid.
-                // e.g. return { id: 1, name: 'J Smith', email: 'jsmith@example.com' }
-                // You can also use the `req` object to obtain additional parameters
-                // (i.e., the request IP address)
-                // const res = await fetch('/your/endpoint', {
-                //     method: 'POST',
-                //     body: JSON.stringify(credentials),
-                //     headers: { 'Content-Type': 'application/json' },
-                // })
-                // const user = await res.json()
+            async authorize(credentials) {
+                // const pass = hashPass(credentials.password)
+                // console.log(pass)
+                const user = await getUserByEmail({ email: credentials.email })
 
-                // If no error and we have user data, return it
-                // if (res.ok && user) {
-                //     return user
-                // }
-                // Return null if user data could not be retrieved
-                // return null
+                if (!user.data) {
+                    return null
+                }
+
+                const passwordMatch = await comparePassword(credentials.password, user.data?.password)
+
+                if (!passwordMatch) {
+                    return null
+                }
+
+                return user
             },
         }),
     ],
